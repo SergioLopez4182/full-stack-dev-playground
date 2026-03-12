@@ -1,6 +1,6 @@
 "use client";
 
-import GoBackButton from '@/components/buttons/go-back';
+import GoBackButton from '@/projects/work-permission-app/buttons/button.go-back';
 import { Button, Group, TextInput, Title, Text, Anchor, Stack, PasswordInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconArrowLeft, IconEyeCheck, IconEyeOff } from "@tabler/icons-react";
@@ -27,7 +27,7 @@ export default function SignUp() {
 
     return (
         <section className="flex flex-col items-start w-1/4 gap-1">
-            <GoBackButton href="/auth/log-in" />
+            <GoBackButton href="/projects/work-permission-app/auth/log-in" />
             <article className="flex rounded-2xl bg-cyan-800 gap-8 p-12">
 
                 <section className="flex bg-white rounded-2xl p-8">

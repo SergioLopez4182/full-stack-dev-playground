@@ -1,8 +1,8 @@
 "use client";
 
-import DashboardLayout from "@/features/projects/work-permission-app/layouts/dashboard.layout";
-import CreatePermissionModal from "@/features/projects/work-permission-app/permissions/create-permission-modal";
-import PermissionCard from "@/features/projects/work-permission-app/permissions/permission-card";
+import DashboardLayout from "@/projects/work-permission-app/layouts/dashboard.layout";
+import CreatePermissionModal from "@/projects/work-permission-app/permissions/create-permission-modal";
+import PermissionCard from "@/projects/work-permission-app/permissions/permission-card";
 import { Card, SimpleGrid, Text } from "@mantine/core";
 
 export default function Permissions() {

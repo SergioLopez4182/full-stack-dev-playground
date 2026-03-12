@@ -11,7 +11,7 @@ export function Button({
 }: ButtonProps) {
     const base = `
         w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors
-        active:scale-[0.98] transition
+        active:scale-[0.98] transition border-transparent
     `;
 
     const variants = {

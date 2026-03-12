@@ -1,4 +1,4 @@
-import DashboardNavbar from "@/features/projects/work-permission-app/layouts/dashboard.navbar";
+import DashboardNavbar from "@/projects/work-permission-app/layouts/dashboard.navbar";
 
 export default function DashboardLayout({
     children,

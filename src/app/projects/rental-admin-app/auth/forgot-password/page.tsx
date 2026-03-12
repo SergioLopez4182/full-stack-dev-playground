@@ -1,10 +1,12 @@
 import { RectangleEllipsis } from "lucide-react";
-import { Button } from "@/features/projects/rental-admin-app/button";
-import { Input } from "@/features/projects/rental-admin-app/input";
+import { Button } from "@/projects/rental-admin-app/button";
+import { Input } from "@/projects/rental-admin-app/input";
+import ReturnButton from "@/projects/rental-admin-app/button.return";
 
 export default function ForgotPasswordPage() {
   return (
     <section className="flex flex-col gap-4">
+      <ReturnButton href="/projects/rental-admin-app/auth/log-in"/>
       <header className="flex flex-col items-center">
         <div className="p-2 bg-white rounded-xl shadow mb-4">
           <RectangleEllipsis className="w-12 h-12" />
