@@ -16,11 +16,11 @@ export default function CreatePermissionModal({ }: Props) {
         </Modal>
 
         <ActionButton 
-            icon={<IconFilePlus size={32}/>}
+            icon={<IconFilePlus size={28} stroke={1.5}/>}
             label="Crear permiso"
             variant="filled" 
             onClick={open} 
-            size="xl"
+            size="lg"
             color='cyan.7'
         />
     </>);

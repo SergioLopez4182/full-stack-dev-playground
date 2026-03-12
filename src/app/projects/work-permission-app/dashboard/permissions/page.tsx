@@ -1,9 +1,10 @@
 "use client";
 
 import DashboardLayout from "@/projects/work-permission-app/layouts/dashboard.layout";
-import CreatePermissionModal from "@/projects/work-permission-app/permissions/create-permission-modal";
-import PermissionCard from "@/projects/work-permission-app/permissions/permission-card";
+import CreatePermissionModal from "@/projects/work-permission-app/permissions/permission.modal.create";
+import PermissionCard from "@/projects/work-permission-app/permissions/permission.card";
 import { Card, SimpleGrid, Text } from "@mantine/core";
+import { permissionsMock } from "@/projects/work-permission-app/permissions/permission.repository";
 
 export default function Permissions() {
 
@@ -14,8 +15,8 @@ export default function Permissions() {
                 spacing="md"
                 verticalSpacing="md"
             >
-                {Array.from({ length: 100 }).map((_, index) => (
-                    <PermissionCard key={index} />
+                {permissionsMock.map((p, i) => (
+                    <PermissionCard key={i} permission={p} />
                 ))}
             </SimpleGrid>
         </div>

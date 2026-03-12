@@ -1,18 +1,23 @@
 "use client";
 
-import { ActionIcon, Card, Grid, Group, Modal, Select, SimpleGrid, Stack, Text, Textarea, TextInput } from "@mantine/core";
-import { IconArrowsDiagonal, IconDots, IconWindowMaximize } from "@tabler/icons-react";
-import ViewPermissionDetailModal from "./view-permission-detail-modal";
-import PermissionActionsMenu from "./permission-actions-menu";
+import { Badge, Card, Grid, Group, Modal, Select, Stack, Text, Textarea, TextInput } from "@mantine/core";
+import PermissionActionsMenu from "./permission.menu.actions";
 import { useDisclosure } from "@mantine/hooks";
 import { DatePickerInput, getTimeRange, TimeGrid } from "@mantine/dates";
+import { Permission } from "./permission.model";
+import PermissionStatusBadge from "./permission.card.status-badge";
+import { permissionTypes } from "./permission.types.repository";
 
 interface Props {
-
+    permission: Permission;
 }
 
-export default function PermissionCard({ }: Props) {
+export default function PermissionCard({ permission }: Props) {
     const [opened, { open, close }] = useDisclosure(false);
+
+    const type = permissionTypes.find(s => s.id === permission.typeId);
+
+    if (!type) return null;
 
     return (<>
         <Modal opened={opened} onClose={close} title="Crear permiso de trabajo" centered>
@@ -73,33 +78,34 @@ export default function PermissionCard({ }: Props) {
             <Card.Section withBorder px="md" py="xs" className="border-b-2 border-cyan-800">
                 <Group justify="space-between" preventGrowOverflow={false} wrap="nowrap">
                     <Text fw={700} size="lg" c='cyan'>
-                        Folio #1000000
+                        Folio #{permission.id}
                     </Text>
-                    <Group gap={0}>
+                    <Group gap={4}>
+                        <PermissionStatusBadge statusId={permission.statusId}/>
                         <PermissionActionsMenu />
                     </Group>
                 </Group>
             </Card.Section>
 
-            <Card.Section onClick={open} px="md" py="xs" className="hover:bg-cyan-800/10 cursor-pointer">
+            <Card.Section onClick={open} px="md" py="xs" className="hover:bg-cyan-800/10 h-full cursor-pointer">
                 <Grid grow>
                     <Grid.Col span={6}>
                         <Stack gap={0}>
                             <Text fw={700} c="dimmed" size="sm">
-                                Proyecto
+                                Centro comercial
                             </Text>
                             <Text c="dimmed" size="sm">
-                                PROYECTO DEMO
+                                {permission.shoppingCenter}
                             </Text>
                         </Stack>
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <Stack gap={0}>
                             <Text fw={700} c="dimmed" size="sm">
-                                Local
+                                Espacio comercial
                             </Text>
                             <Text c="dimmed" size="sm">
-                                LOCAL D-1
+                                {permission.retailSpace}
                             </Text>
                         </Stack>
                     </Grid.Col>
@@ -109,7 +115,7 @@ export default function PermissionCard({ }: Props) {
                                 Tipo
                             </Text>
                             <Text c="dimmed" size="sm">
-                                Actividades de Marketing
+                                {type.label}
                             </Text>
                         </Stack>
                     </Grid.Col>
@@ -119,7 +125,7 @@ export default function PermissionCard({ }: Props) {
                                 Periodo
                             </Text>
                             <Text c="dimmed" size="sm">
-                                2025/10/01 - 2025/10/31
+                                {permission.startDate.format("YYYY/MM/DD")} - {permission.endDate.format("YYYY/MM/DD")}
                             </Text>
                         </Stack>
                     </Grid.Col>
@@ -129,7 +135,7 @@ export default function PermissionCard({ }: Props) {
                                 Descripción
                             </Text>
                             <Text c="dimmed" size="sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu dolor vel odio bibendum efficitur ac maximus leo. Nunc pretium blandit tempus. In vehicula lacus eu elit rhoncus, et ornare libero pretium. Curabitur gravida quis justo ut pretium. Praesent dapibus dui ante, bibendum imperdiet augue euismod eu. Praesent sit amet finibus lacus. Maecenas lacinia laoreet sodales.
+                                {permission.description}
                             </Text>
                         </Stack>
                     </Grid.Col>

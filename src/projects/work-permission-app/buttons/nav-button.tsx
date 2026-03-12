@@ -12,19 +12,21 @@ interface Props {
 export default function NavButton({ name, href }: Props) {
     const pathname = usePathname();
 
-    const isActive =
-        href === "/dashboard"
-            ? pathname === "/dashboard"
-            : pathname.startsWith(href);
+    console.log("pathname", pathname)
+    console.log("href", href)
+
+    const isActive = pathname === href || pathname.startsWith(`${href}/`);
+
+    console.log("is_active", isActive)
 
     return (
         <Link
             href={href}
             className={
-                "no-underline text-xl font-bold rounded-t-lg p-2 transition-colors duration-50 border-white text-white " +
+                "no-underline text-lg font-bold rounded-t-lg px-3 py-2 duration-50 border-b-0 border-b-transparent transition-color -mb-px " +
                 (isActive
-                    ? "border-b-3 hover:bg-white hover:text-cyan-800 "
-                    : "hover:border-b-3 hover:bg-white/10")
+                    ? "text-cyan-800 bg-gray-300 "
+                    : "border-2 border-gray-300 text-white hover:bg-gray-300/20")
             }
         >
             {name}

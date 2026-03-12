@@ -1,29 +1,49 @@
 "use client";
 
 import Image from "next/image";
-import { Button, Checkbox, Group, TextInput, Title, Text, Anchor, PasswordInput, Stack } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { useRouter } from "next/navigation";
+import { Button, Checkbox, Group, TextInput, Title, Text, Anchor, PasswordInput, Stack } from "@mantine/core";
+import { useForm, isNotEmpty, isEmail } from "@mantine/form";
 import { IconEyeCheck, IconEyeOff, IconLogin } from "@tabler/icons-react";
 
 export default function LogIn() {
+    const router = useRouter();
+
     const VisibilityToggleIcon = ({ reveal }: { reveal: boolean }) =>
         reveal ? (
-            <IconEyeOff style={{ width: 'var(--psi-icon-size)', height: 'var(--psi-icon-size)' }} />
+            <IconEyeOff style={{ width: "var(--psi-icon-size)", height: "var(--psi-icon-size)" }} />
         ) : (
-            <IconEyeCheck style={{ width: 'var(--psi-icon-size)', height: 'var(--psi-icon-size)' }} />
+            <IconEyeCheck style={{ width: "var(--psi-icon-size)", height: "var(--psi-icon-size)" }} />
         );
 
     const form = useForm({
-        mode: 'controlled',
+        mode: "controlled",
+        name: "log-in-form",
         initialValues: {
-            username: '',
-            password: '',
-            rememberMe: false,
+            username: "john-doe@outlook.com",
+            password: "123456",
+            rememberMe: true,
         },
         validate: {
-            username: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            username: isEmail("Correo electrónico no válido"),
+            password: isNotEmpty("La contraseña no puede estar vacía"),
         },
     });
+
+    const onSubmit = (values: typeof form.values) => {
+        console.log(values);
+        router.push("/projects/work-permission-app/dashboard");
+    };
+
+    const onSubmitError = (errors: typeof form.errors) => {
+        console.log("Errores del formulario:", errors);
+
+        const firstError = Object.values(errors)[0];
+
+        if (firstError) {
+            console.error(firstError);
+        }
+    }
 
     return (
         <article className="flex flex-col lg:flex-row rounded-2xl bg-cyan-800 gap-8 p-12">
@@ -46,7 +66,7 @@ export default function LogIn() {
             <main className="rounded-r-2xl">
                 <section className="flex w-full bg-white rounded-2xl p-8">
                     <form
-                        onSubmit={form.onSubmit((values) => console.log(values))}
+                        onSubmit={form.onSubmit(onSubmit, onSubmitError)}
                         className="flex flex-col gap-4"
                     >
                         <Stack gap={0}>
@@ -63,8 +83,8 @@ export default function LogIn() {
                             label="Correo electronico"
                             withAsterisk
                             placeholder="example@email.com"
-                            key={form.key('username')}
-                            {...form.getInputProps('username')}
+                            key={form.key("username")}
+                            {...form.getInputProps("username")}
                         />
 
                         <PasswordInput
@@ -72,8 +92,8 @@ export default function LogIn() {
                             withAsterisk
                             placeholder="Ingresa tu contraseña"
                             visibilityToggleIcon={VisibilityToggleIcon}
-                            key={form.key('password')}
-                            {...form.getInputProps('password')}
+                            key={form.key("password")}
+                            {...form.getInputProps("password")}
                         />
 
                         <Group justify="space-between">
@@ -81,11 +101,11 @@ export default function LogIn() {
                                 size="sm"
                                 label="Recuerdame"
                                 color="cyan.8"
-                                key={form.key('termsOfService')}
-                                {...form.getInputProps('termsOfService', { type: 'checkbox' })}
+                                key={form.key("rememberMe")}
+                                {...form.getInputProps("rememberMe", { type: "checkbox" })}
                             />
 
-                            <Anchor href="/auth/forgot-password" underline="hover" size="sm">
+                            <Anchor href="/auth/forgot-password" underline="hover" size="sm" c="cyan.8">
                                 ¿Olvidaste tu contraseña?
                             </Anchor>
                         </Group>
@@ -96,14 +116,16 @@ export default function LogIn() {
                                 fullWidth
                                 color="cyan.8"
                                 leftSection={<IconLogin size={20} />}
-                            >Iniciar sesión</Button>
+                            >
+                                Iniciar sesión
+                            </Button>
                         </Group>
 
                         <Group gap="xs">
                             <Text size="sm" c="dimmed">
                                 ¿No tienes cuenta?
                             </Text>
-                            <Anchor href="/auth/sign-up" underline="hover" size="sm">
+                            <Anchor href="/auth/sign-up" underline="hover" size="sm" c="cyan.8">
                                 Registrate
                             </Anchor>
                         </Group>

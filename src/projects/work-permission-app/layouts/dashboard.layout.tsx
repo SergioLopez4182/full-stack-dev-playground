@@ -17,8 +17,8 @@ export default function DashboardLayout({
         <article className="flex flex-col w-full px-8 py-4 gap-4">
             <header className="flex justify-between items-center">
                 <section className="flex flex-col">
-                    <div className="font-bold text-2xl">{title}</div>
-                    <div className="font-medium text-xl text-gray-500">{subtitle}</div>
+                    <div className="font-bold text-2xl text-cyan-800">{title}</div>
+                    <div className="font-medium text-md text-gray-500">{subtitle}</div>
                 </section>
                 <section>
                     {actions}

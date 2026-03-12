@@ -1,12 +1,6 @@
-import { Menu, ActionIcon, Text } from '@mantine/core';
+import { Menu, ActionIcon } from '@mantine/core';
 import {
     IconDots,
-    IconSettings,
-    IconSearch,
-    IconPhoto,
-    IconMessageCircle,
-    IconTrash,
-    IconArrowsLeftRight,
     IconFileX,
     IconFileCheck,
     IconEdit,

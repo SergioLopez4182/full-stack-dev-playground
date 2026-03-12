@@ -7,8 +7,8 @@ export default function LogoButton() {
 
     return (
         <Link
-            href="/dashboard"
-            className="flex px-2 py-1 transition-opacity hover:bg-white/10 rounded-lg"
+            href="/projects/work-permission-app/dashboard"
+            className="flex px-2 py-1 transition-opacity rounded-lg hover:bg-white/10 scale-95"
         >
             <Image
                 src="/nav-logo.svg"
